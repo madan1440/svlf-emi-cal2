@@ -159,9 +159,22 @@ body {
 .result-tile .label { font-size: 12px; color: #6b7280; }
 .result-tile .value { font-size: 18px; font-weight: 600; }
 
-/* Responsive: stack rows on very small screens */
+
+/* Responsive: keep inline layout on very small screens */
 @media (max-width: 400px) {
-  .form-row { grid-template-columns: 1fr; }
-  .inline-field { grid-template-columns: 1fr; gap: 6px; }
-  .interest-toggle { flex-wrap: wrap; }
+  /* Keep label + field side-by-side but slightly tighter */
+  .form-row { grid-template-columns: 120px 1fr; }
+
+  /* Keep input + toggle side-by-side */
+  .inline-field { grid-template-columns: 1fr auto; gap: 6px; }
+
+  /* For RC row: toggle first, input second (already compact) */
+  .inline-field.inline-rc { grid-template-columns: auto 1fr; }
+
+  /* Prevent the interest toggle buttons from wrapping */
+  .interest-toggle { flex-wrap: nowrap; }
+
+  /* Allow the input to shrink so both fit on one line */
+  .rc-inline-input,
+  .form-control { min-width: 0; }
 }
